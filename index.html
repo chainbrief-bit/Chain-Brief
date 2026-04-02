@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chain Brief — March 31, 2026</title>
+<title>Chain Brief — April 2, 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -33,17 +33,7 @@
   .issue-date { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; }
   .issue-num { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--accent); margin-top: 2px; }
 
-  /* Q1 SCORECARD */
-  .q1-card { background: #100a00; border: 1px solid #3a2a00; border-top: 3px solid var(--accent); padding: 20px 22px; margin: 28px 0; animation: fadeUp 0.5s 0.1s ease both; }
-  .q1-title { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 14px; }
-  .q1-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #3a2a00; }
-  .q1-cell { background: #140d00; padding: 12px 14px; }
-  .q1-ticker { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--muted); text-transform: uppercase; }
-  .q1-val { font-family: 'Space Mono', monospace; font-size: 1rem; font-weight: 700; color: var(--down); margin: 4px 0 2px; }
-  .q1-val.up { color: var(--up); }
-  .q1-label { font-family: 'Space Mono', monospace; font-size: 0.55rem; color: var(--muted); }
-
-  .market-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 16px; animation: fadeUp 0.5s 0.15s ease both; }
+  .market-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 28px 0; animation: fadeUp 0.5s 0.1s ease both; }
   .market-cell { background: var(--surface); padding: 14px 16px; position: relative; overflow: hidden; }
   .market-cell::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
   .market-cell.up::before { background: var(--up); }
@@ -56,12 +46,25 @@
   .down .market-change { color: var(--down); }
   .flat .market-change { color: var(--flat); }
 
-  .sentiment-block { background: var(--surface); border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 28px; display: flex; align-items: center; gap: 20px; animation: fadeUp 0.5s 0.18s ease both; }
+  .sentiment-block { background: var(--surface); border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 20px; animation: fadeUp 0.5s 0.15s ease both; }
   .sentiment-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; white-space: nowrap; }
   .sentiment-bar-wrap { flex: 1; height: 6px; background: var(--border); position: relative; }
   .sentiment-bar-fill { height: 100%; width: 11%; background: linear-gradient(90deg, #ff4d6d, #f0e040); position: relative; }
   .sentiment-bar-fill::after { content: '11'; position: absolute; right: -2px; top: -18px; font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--down); font-weight: 700; }
   .sentiment-tag { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--down); font-weight: 700; white-space: nowrap; }
+
+  .alert-banner { background: #1a0f0f; border: 1px solid #4a1a1a; border-left: 3px solid var(--down); padding: 14px 18px; margin-bottom: 28px; display: flex; align-items: flex-start; gap: 14px; animation: fadeUp 0.5s 0.18s ease both; }
+  .alert-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--down); flex-shrink: 0; margin-top: 5px; animation: pulse 1.5s infinite; }
+  .alert-text { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: #ff9999; line-height: 1.6; }
+  .alert-text strong { color: var(--down); }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+
+  /* LIQ STRIP */
+  .liq-bar { background: #150a0a; border: 1px solid #3a1a1a; padding: 14px 20px; margin-bottom: 28px; display: flex; gap: 24px; align-items: center; animation: fadeUp 0.5s 0.2s ease both; flex-wrap: wrap; }
+  .liq-title { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--down); text-transform: uppercase; letter-spacing: 0.12em; white-space: nowrap; }
+  .liq-stat { text-align: center; }
+  .liq-val { font-family: 'Space Mono', monospace; font-size: 1rem; color: var(--down); font-weight: 700; }
+  .liq-label { font-family: 'Space Mono', monospace; font-size: 0.55rem; color: var(--muted); margin-top: 2px; }
 
   .section-label { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
@@ -72,9 +75,9 @@
   .story-tag { font-family: 'Space Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em; padding: 2px 7px; border: 1px solid; }
   .tag-markets { color: var(--accent); border-color: var(--accent); }
   .tag-macro { color: #60c8ff; border-color: #60c8ff; }
-  .tag-policy { color: var(--accent2); border-color: var(--accent2); }
-  .tag-ftx { color: #a78bfa; border-color: #a78bfa; }
-  .tag-onchain { color: var(--accent3); border-color: var(--accent3); }
+  .tag-security { color: var(--down); border-color: var(--down); }
+  .tag-institutional { color: #a78bfa; border-color: #a78bfa; }
+  .tag-onchain { color: var(--accent2); border-color: var(--accent2); }
   .story-number { font-family: 'Space Mono', monospace; font-size: 0.55rem; color: var(--muted); }
   .story-title { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: #fff; line-height: 1.3; margin-bottom: 10px; }
   .story-body { font-size: 0.88rem; color: #b0b0c8; line-height: 1.75; }
@@ -113,8 +116,8 @@
 
   @media(max-width:520px){
     .market-strip{grid-template-columns:repeat(2,1fr)}
-    .q1-grid{grid-template-columns:repeat(2,1fr)}
     .signal-grid{grid-template-columns:1fr}
+    .liq-bar{flex-wrap:wrap}
     .header{flex-direction:column;align-items:flex-start}
     .issue-info{text-align:left}
   }
@@ -129,58 +132,31 @@
       <div class="tagline">Daily Crypto Intelligence · Est. 2024</div>
     </div>
     <div class="issue-info">
-      <div class="issue-date">TUE / MAR 31 / 2026</div>
-      <div class="issue-num">#516</div>
+      <div class="issue-date">THU / APR 2 / 2026</div>
+      <div class="issue-num">#518</div>
     </div>
   </header>
-
-  <!-- Q1 SCORECARD -->
-  <div class="q1-card">
-    <div class="q1-title">⬡ Q1 2026 Final Scorecard — Quarter Closes Red</div>
-    <div class="q1-grid">
-      <div class="q1-cell">
-        <div class="q1-ticker">BTC Q1</div>
-        <div class="q1-val">−24%</div>
-        <div class="q1-label">$88K → $67K</div>
-      </div>
-      <div class="q1-cell">
-        <div class="q1-ticker">ETH Q1</div>
-        <div class="q1-val">−55%</div>
-        <div class="q1-label">$4,800 → $2,039</div>
-      </div>
-      <div class="q1-cell">
-        <div class="q1-ticker">TOTAL MKT</div>
-        <div class="q1-val">−8.2%</div>
-        <div class="q1-label">$2.6T → $2.38T</div>
-      </div>
-      <div class="q1-cell">
-        <div class="q1-ticker">VS Q1 2024</div>
-        <div class="q1-val up">+142%</div>
-        <div class="q1-label">Secular trend intact</div>
-      </div>
-    </div>
-  </div>
 
   <div class="market-strip">
     <div class="market-cell down">
       <div class="market-ticker">BTC</div>
-      <div class="market-price">$66,700</div>
-      <div class="market-change">−1.2%</div>
+      <div class="market-price">$66,400</div>
+      <div class="market-change">−3.2%</div>
     </div>
     <div class="market-cell down">
       <div class="market-ticker">ETH</div>
-      <div class="market-price">$2,039</div>
-      <div class="market-change">−0.5%</div>
+      <div class="market-price">$2,030</div>
+      <div class="market-change">−4.4%</div>
     </div>
-    <div class="market-cell flat">
-      <div class="market-ticker">XRP</div>
-      <div class="market-price">$1.33</div>
-      <div class="market-change">+0.14%</div>
+    <div class="market-cell down">
+      <div class="market-ticker">SOL</div>
+      <div class="market-price">−5.8%</div>
+      <div class="market-change">session low</div>
     </div>
-    <div class="market-cell flat">
-      <div class="market-ticker">DOGE</div>
-      <div class="market-price">$0.093</div>
-      <div class="market-change">+2.31%</div>
+    <div class="market-cell down">
+      <div class="market-ticker">OIL</div>
+      <div class="market-price">$106+</div>
+      <div class="market-change">+5% spike</div>
     </div>
   </div>
 
@@ -189,38 +165,55 @@
     <div class="sentiment-bar-wrap">
       <div class="sentiment-bar-fill"></div>
     </div>
-    <div class="sentiment-tag">⚠ EXTREME FEAR · Q1 CLOSES AT 11</div>
+    <div class="sentiment-tag">⚠ EXTREME FEAR · RALLY FULLY ERASED</div>
+  </div>
+
+  <div class="liq-bar">
+    <div class="liq-title">💥 24h Liquidations</div>
+    <div class="liq-stat"><div class="liq-val">$422M</div><div class="liq-label">Total</div></div>
+    <div class="liq-stat"><div class="liq-val">$249M</div><div class="liq-label">Longs wiped</div></div>
+    <div class="liq-stat"><div class="liq-val">140K+</div><div class="liq-label">Traders liquidated</div></div>
+  </div>
+
+  <div class="alert-banner">
+    <div class="alert-dot"></div>
+    <div class="alert-text">
+      <strong>BREAKING:</strong> Trump says US will hit Iran "extremely hard" over next 2–3 weeks · Oil surges above $106 · $422M liquidated · Drift DeFi platform hacked — $200M+ drained · Non-farm payrolls tomorrow
+    </div>
   </div>
 
   <div class="section-label">Top Stories</div>
 
   <div class="story">
     <div class="story-meta">
-      <span class="story-tag tag-markets">Markets</span>
+      <span class="story-tag tag-macro">Macro</span>
       <span class="story-number">01</span>
     </div>
-    <div class="story-title">Q1 2026 Closes Red — Bitcoin's Worst Quarter Since the Cycle Began</div>
+    <div class="story-title">Trump's About-Face Wipes Yesterday's Rally in Hours</div>
     <div class="story-body">
-      Q1 2026 is officially in the books — and it was brutal. Bitcoin ended the quarter at <strong>$66,700</strong>, down <strong>24%</strong> from its January open near $88,000. Ethereum fared worse, collapsing <strong>55%</strong> from $4,800 to $2,039. Total market cap closed at <strong>$2.38T</strong>, down 8.2% from Q1's peak but still up an extraordinary <strong>142% from Q1 2024 levels</strong> — a reminder that the secular uptrend remains structurally intact even as this cycle correction stings.
+      Yesterday's peace optimism evaporated overnight. In a primetime national address, President Trump reversed course entirely — declaring the US would hit Iran <strong>"extremely hard"</strong> over the next two to three weeks, threatening strikes on Iranian power plants if no deal is reached. The speech mentioned core strategic objectives are "close to completion" but offered zero de-escalation path.
       <br><br>
-      The culprits are well documented: a <strong>hawkish Fed hold</strong> in March, the <strong>Iran-Hormuz energy shock</strong> sending oil past $110, Trump's tariff uncertainty, and a national Bitcoin reserve announcement that disappointed markets by excluding new purchases. Fear & Greed closes Q1 at <strong>11</strong> — the second most extreme fear reading in 18 months.
-      <div class="pull-quote">Historically, Fear & Greed readings below 15 have preceded 30-day forward returns averaging +18.3%. Seven prior occurrences since 2023. The setup exists. The catalyst is still missing.</div>
-      Volume compression to $94.96B — 12% below the 7-day average — signals the market is consolidating rather than capitulating outright. Q2 opens with everything on the line.
+      Markets reacted immediately. <strong>Brent crude surged more than 5% to above $106</strong>. Bitcoin dropped 3.2% to $66,400, erasing two days of gains in hours. Ethereum fell 4.4% to $2,030. Solana shed nearly 6%. Every top-10 token closed in the red. The S&P 500 followed global equities lower.
+      <br><br>
+      The pattern is now five weeks running: Trump signals peace → markets rally → Trump escalates → markets sell off. Analysts at CoinDesk note that <strong>strategic petroleum reserves used to offset Hormuz supply losses are likely to be exhausted within weeks</strong> — meaning the next escalation headline hits an already strained physical oil market with even less buffer.
+      <div class="pull-quote">Bitcoin's 30-day rolling correlation with the S&P 500 has spiked to 0.75 — its highest in months. Institutional desks are treating BTC as a high-beta tech proxy, not a geopolitical hedge. The safe-haven narrative is cracking.</div>
     </div>
   </div>
 
   <div class="story">
     <div class="story-meta">
-      <span class="story-tag tag-ftx">FTX</span>
+      <span class="story-tag tag-security">Security</span>
       <span class="story-number">02</span>
     </div>
-    <div class="story-title">FTX Distributes $2.2 Billion Today — The Final Chapter</div>
+    <div class="story-title">Drift Hacked — $200M+ Drained, Deposits Halted</div>
     <div class="story-body">
-      Today marks a landmark moment in crypto history: the FTX Recovery Trust is distributing <strong>$2.2 billion</strong> to eligible creditors — the fourth major payout since the exchange collapsed in November 2022. This round targets claims over $50,000 and brings total FTX repayments to roughly <strong>$10 billion</strong> since distributions began in early 2025.
+      Solana's largest DeFi derivatives platform Drift confirmed an <strong>"active attack"</strong> today with over <strong>$200 million leaving the platform</strong>. Drift immediately halted deposits while investigating the suspicious activity and urged all users to proceed with extreme caution.
       <br><br>
-      Payments arrive through BitGo, Kraken, or Payoneer within 1–3 business days. Most creditors in smaller claim classes are already at or above <strong>100% recovery</strong> in dollar terms — a legal win. But there's a painful asterisk: all payouts are calculated at <strong>November 2022 crypto prices</strong>. If you had 1 BTC frozen on FTX, you receive roughly $16,871. Not today's $66,700. That gap represents years of gains creditors will never recover.
+      Separately, <strong>Galaxy Digital's testnet suffered unauthorized access</strong> — though the firm confirmed no client funds or information were compromised, with the breach limited to a segregated R&D workspace.
       <br><br>
-      The market question: does <strong>$2.2 billion in fresh liquidity</strong> re-enter crypto? Creditor reinvestment could provide a meaningful bid heading into Q2. Watch for unusual volume spikes in BTC and ETH over the next 72 hours as a signal.
+      The timing is brutal. A $200M+ DeFi exploit on the same day macro headwinds are crushing sentiment adds a crypto-native layer of risk on top of the geopolitical pressure. Security experts are urging users to audit admin keys — not just code — following the Drift incident, noting that privileged access controls are increasingly the attack vector of choice.
+      <div class="pull-quote">"Audit admin keys, not just code." — CoinDesk security expert commentary on the Drift exploit.</div>
+      If you have funds on Drift — act now. Withdraw to self-custody until the platform confirms the vulnerability is contained.
     </div>
   </div>
 
@@ -229,28 +222,32 @@
       <span class="story-tag tag-macro">Macro</span>
       <span class="story-number">03</span>
     </div>
-    <div class="story-title">Trump's "Liberation Day" Tariffs Drop Tomorrow — Crypto Braces for Volatility</div>
+    <div class="story-title">Stop Chasing Trump's Iran Rhetoric — Watch These Instead</div>
     <div class="story-body">
-      Tomorrow, April 2, President Trump is expected to announce a new sweeping round of tariffs — dubbed <strong>"Liberation Day"</strong> by the administration. Markets are already pricing in the uncertainty. The move follows a Supreme Court ruling earlier this quarter that struck down Trump's IEEPA-based tariffs as unconstitutional, forcing the White House to pivot to a 15% global tariff under Section 122 of the Trade Act.
+      The past four weeks have been brutal for traders chasing Iran headlines. Analysts at CoinDesk identified three signals that cut through the noise and actually reflect where the conflict is heading:
       <br><br>
-      For crypto, the transmission is direct: <strong>tariffs → inflation fears → Fed stays hawkish → liquidity tightens → risk assets sell off</strong>. Bitcoin has shown an 89% correlation with the S&P 500 during macro shock events this quarter. A tariff announcement that surprises to the upside could trigger another liquidation cascade heading into Q2.
+      <strong>1. Ship insurance premiums for Hormuz transits</strong> — still soaring, signaling the route remains genuinely unsafe regardless of what Trump says publicly.
       <br><br>
-      The one silver lining: if tariffs are softer than feared — or paired with any hint of negotiation — the relief rally that started Monday could find real legs heading into April.
+      <strong>2. Tanker traffic data</strong> — still collapsed. Only 90 ships have passed through since March 1. The physical blockade is real even when the political rhetoric softens.
+      <br><br>
+      <strong>3. Strategic petroleum reserve levels</strong> — the emergency releases that have been cushioning the oil shock are running out within weeks. When they're exhausted, any escalation headline hits an unprotected market.
+      <br><br>
+      Tomorrow's <strong>Non-Farm Payrolls</strong> report is the next known catalyst. A strong jobs number drives Treasury yields and the dollar higher — bad for Bitcoin. A weak number gives the Fed cover to avoid hiking — potentially good. Watch 8:30am ET Friday.
     </div>
   </div>
 
   <div class="story">
     <div class="story-meta">
-      <span class="story-tag tag-policy">Policy</span>
+      <span class="story-tag tag-institutional">Institutional</span>
       <span class="story-number">04</span>
     </div>
-    <div class="story-title">SEC Chair Atkins: DeFi Innovation Exemption Coming "Within Weeks"</div>
+    <div class="story-title">JPMorgan Eyes Prediction Markets — Jamie Dimon Signals Interest</div>
     <div class="story-body">
-      SEC Chair Paul Atkins told a crypto audience this week that the agency's long-awaited <strong>tokenization innovation exemption</strong> could arrive within weeks — a statement that has significant implications for DeFi protocols, RWA platforms, and tokenized securities issuers operating in regulatory gray zones.
+      JPMorgan CEO Jamie Dimon said the bank is actively considering entering the prediction markets space — avoiding sports and politics but signaling interest in financial and economic forecasting markets. Goldman Sachs CEO David Solomon has also met recently with major prediction platforms as institutional interest in the sector accelerates.
       <br><br>
-      The exemption would effectively create a sandbox where compliant DeFi and tokenization projects can operate without triggering traditional securities registration requirements. For protocols like Aave — which just launched v4 targeting real-world credit markets — this is the regulatory green light they've been waiting for.
+      The significance for crypto: prediction markets like Polymarket and Kalshi are blockchain-native or crypto-adjacent. JPMorgan and Goldman entering the space legitimizes on-chain forecasting infrastructure and brings regulatory pressure — both in the form of CFTC framework development and potential competition from TradFi giants.
       <br><br>
-      The CLARITY Act Senate markup is still targeting <strong>late April</strong>. If both the SEC exemption and legislative progress land in the same month, April could be the most consequential policy month for crypto since the Bitcoin ETF approvals in January 2024.
+      Also institutional: <strong>Citadel-backed EDX Markets applied for a US trust charter</strong> today to expand institutional crypto custody and asset services. The institutional infrastructure build-out continues even as prices bleed — a signal that smart money is positioning for the next cycle, not exiting the asset class.
     </div>
   </div>
 
@@ -259,51 +256,51 @@
       <span class="story-tag tag-onchain">On-Chain</span>
       <span class="story-number">05</span>
     </div>
-    <div class="story-title">Q1 Winners: Stablecoins, RWA, and AI Tokens — Everything Else Bled</div>
+    <div class="story-title">Bitcoin Treasury Companies Selling — Google Flags Quantum Risk</div>
     <div class="story-body">
-      While majors closed Q1 deep in red, three sectors quietly outperformed throughout the quarter. <strong>Stablecoins</strong> hit a combined market cap of <strong>$142 billion</strong> — near all-time highs — signaling massive sidelined capital waiting for re-entry rather than a full exit from crypto.
+      Two notable on-chain developments today. First: <strong>public companies and sovereign holders are beginning to liquidate Bitcoin treasury positions</strong> to shore up balance sheets amid falling prices and prolonged consolidation. Falling prices erode the paper gains that justified holding BTC on corporate balance sheets — and some CFOs are choosing liquidity over conviction.
       <br><br>
-      <strong>RWA tokens</strong> held their ground as higher-for-longer rates made tokenized yield instruments genuinely competitive with TradFi alternatives. The RWA market closed Q1 above <strong>$12 billion</strong>. <strong>AI-linked tokens</strong> like Bittensor (TAO) saw accumulation despite the broader market weakness, driven by new subnet launches and growing institutional interest in decentralized AI infrastructure.
+      Second: Google flagged that <strong>quantum computing could break Bitcoin's cryptographic security sooner than previously estimated</strong>. The warning sent quantum-resistant tokens surging 50%+ yesterday, and crypto ecosystems are now diverging on post-quantum strategies. Bitcoin's elliptic curve cryptography is the specific vulnerability cited — though most experts estimate a meaningful threat remains years away, not months.
       <br><br>
-      On the altcoin front, today's standouts include <strong>Keeta (KTA) +35%</strong>, <strong>Based (BASED) +12.5%</strong>, and <strong>Jupiter (JUP) +6.8%</strong>. Meme sector is also showing life with DOGE up 2.31% on elevated social metrics — 140% week-over-week spike according to on-chain trackers.
+      The FBI's "wash trading bust" also made headlines today — an FBI-created token helped expose how firms allegedly engineered <strong>fake volume</strong> to create artificial liquidity signals. The operation highlights how deeply manipulated some crypto market depth data remains, particularly on smaller exchanges.
     </div>
   </div>
 
-  <!-- ON-CHAIN SIGNALS -->
+  <!-- SIGNALS -->
   <div class="signal-box">
-    <div class="signal-title">⬡ Q1 Close · On-Chain Signals</div>
+    <div class="signal-title">⬡ On-Chain Signals</div>
     <div class="signal-grid">
       <div class="signal-item">
-        <span class="signal-key">BTC Q1 Return</span>
-        <span class="signal-val red">−24%</span>
+        <span class="signal-key">BTC Price</span>
+        <span class="signal-val red">$66,400 (−3.2%)</span>
       </div>
       <div class="signal-item">
-        <span class="signal-key">ETH Q1 Return</span>
-        <span class="signal-val red">−55%</span>
+        <span class="signal-key">ETH Price</span>
+        <span class="signal-val red">$2,030 (−4.4%)</span>
       </div>
       <div class="signal-item">
         <span class="signal-key">Fear & Greed</span>
         <span class="signal-val red">11</span>
       </div>
       <div class="signal-item">
-        <span class="signal-key">Stablecoin Mkt Cap</span>
-        <span class="signal-val green">$142B</span>
+        <span class="signal-key">Oil (Brent)</span>
+        <span class="signal-val red">$106+ (+5%)</span>
       </div>
       <div class="signal-item">
-        <span class="signal-key">FTX Payout Today</span>
-        <span class="signal-val yellow">$2.2B</span>
+        <span class="signal-key">24h Liquidations</span>
+        <span class="signal-val red">$422M</span>
       </div>
       <div class="signal-item">
-        <span class="signal-key">Total Mkt Cap</span>
-        <span class="signal-val red">$2.38T</span>
+        <span class="signal-key">BTC/S&P Correlation</span>
+        <span class="signal-val red">0.75 (high)</span>
       </div>
       <div class="signal-item">
-        <span class="signal-key">24h Volume</span>
-        <span class="signal-val red">$94.96B (−12%)</span>
+        <span class="signal-key">Drift Hack</span>
+        <span class="signal-val red">$200M+ drained</span>
       </div>
       <div class="signal-item">
-        <span class="signal-key">Tariff Day</span>
-        <span class="signal-val yellow">Tomorrow Apr 2</span>
+        <span class="signal-key">NFP Data</span>
+        <span class="signal-val yellow">Tomorrow 8:30am ET</span>
       </div>
     </div>
   </div>
@@ -312,7 +309,7 @@
   <div class="bottom-line">
     <div class="bottom-line-label">⬡ The Bottom Line</div>
     <div class="bottom-line-text">
-      Q1 2026 is closed. Bitcoin down 24%. Ethereum down 55%. Fear & Greed at 11. By almost every short-term metric, this was a painful quarter. But zoom out: total market cap is still up 142% from Q1 2024, stablecoins sit at $142B signaling massive dry powder, and the protocol layer — Aave v4, Ethereum Foundation staking, Midas tokenization, Tether's audit — kept building through the pain. Today $2.2B in FTX creditor payouts hits the market. Tomorrow Trump's Liberation Day tariffs land. The first 48 hours of Q2 will set the tone for the entire quarter. Stay sharp.
+      Yesterday's rally was a head fake. Trump's primetime address was more hawkish than any scenario bulls had priced in — harder strikes, longer timeline, no de-escalation path. Oil is above $106. $422M liquidated. Drift lost $200M+ to hackers. And Fed rate hike odds are climbing back toward 50%. The one honest signal: stop trading Trump's words and start watching tanker traffic, ship insurance premiums, and petroleum reserve levels. Those are the real indicators of when this ends. Tomorrow's Non-Farm Payrolls at 8:30am ET is the next known catalyst. A soft jobs number is the market's best near-term hope. Don't hold your breath.
     </div>
   </div>
 
